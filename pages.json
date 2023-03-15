@@ -1,0 +1,63 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/components/uni/uni-$1/uni-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/modes/notice/index",
+			"style": {
+				"navigationBarTitleText": "消息"
+			}
+		},{
+			"path": "pages/modes/component/index",
+			"style": {
+				"navigationBarTitleText": "组件"
+			}
+		},{
+			"path": "pages/modes/method/index",
+			"style": {
+				"navigationBarTitleText": "方法"
+			}
+		},{
+			"path": "pages/modes/mode/index",
+			"style": {
+				"navigationBarTitleText": "模板"
+			}
+		},{
+			"path": "pages/modes/test/test",
+			"style": {
+				"navigationBarTitleText": "测试"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {},
+	"tabBar": {
+		"color":"#fff",
+		"selectedColor":"#0e90d2",
+		"backgroundColor":"#2a2e32",
+		"list": [ 
+			{
+				"pagePath": "pages/modes/notice/index",
+				"text": "消息"
+			},
+			{
+				"pagePath": "pages/modes/component/index",
+				"text": "组件"
+			},
+			{
+				"pagePath": "pages/modes/method/index",
+				"text": "方法"
+			},
+			{
+				"pagePath": "pages/modes/mode/index",
+				"text": "模板"
+			}
+		]
+	}
+}
