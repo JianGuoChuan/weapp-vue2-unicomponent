@@ -1,32 +1,61 @@
 {
 	"easycom": {
-		"^u-(.*)": "@/components/uni/uni-$1/uni-$1.vue"
+		// "^u-(.*)": "@/components/uni/uni-$1/uni-$1.vue",
+		"^d-(.*)": "@/components/dc/d-$1/d-$1.vue"
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/modes/notice/index",
+			"path": "pages/home/index",
 			"style": {
-				"navigationBarTitleText": "消息"
+				"navigationBarTitleText": "首页"
 			}
 		},{
-			"path": "pages/modes/component/index",
+			"path": "pages/more/index",
 			"style": {
-				"navigationBarTitleText": "组件"
+				"navigationBarTitleText": "逛一逛"
 			}
 		},{
-			"path": "pages/modes/method/index",
+			"path": "pages/user/index",
 			"style": {
-				"navigationBarTitleText": "方法"
+				"navigationBarTitleText": "我的"
 			}
 		},{
-			"path": "pages/modes/mode/index",
-			"style": {
-				"navigationBarTitleText": "模板"
-			}
-		},{
-			"path": "pages/modes/test/test",
+			"path": "pages/test/test",
 			"style": {
 				"navigationBarTitleText": "测试"
+			}
+		},{
+			"path": "pages/modes/components/index",
+			"style": {
+				"navigationBarTitleText": "组件库"
+			}
+		},{
+			"path": "pages/modes/methods/index",
+			"style": {
+				"navigationBarTitleText": "方法库"
+			}
+		},{
+			"path": "pages/modes/modes/index",
+			"style": {
+				"navigationBarTitleText": "模板库"
+			}
+		},
+		{
+			"path": "pages/modes/components/component/filter/index",
+			"style": {
+				"navigationBarTitleText": "筛选弹框"
+			}
+		},
+		{
+			"path": "pages/modes/components/component/fontIcon/index",
+			"style": {
+				"navigationBarTitleText": "字体图标"
+			}
+		},
+		{
+			"path": "pages/modes/components/component/grid/index",
+			"style": {
+				"navigationBarTitleText": "宫格布局"
 			}
 		}
 	],
@@ -38,25 +67,21 @@
 	},
 	"uniIdRouter": {},
 	"tabBar": {
-		"color":"#fff",
+		"color":"#333",
 		"selectedColor":"#0e90d2",
-		"backgroundColor":"#2a2e32",
+		"backgroundColor":"#fff",
 		"list": [ 
 			{
-				"pagePath": "pages/modes/notice/index",
-				"text": "消息"
+				"pagePath": "pages/home/index",
+				"text": "首页"
 			},
 			{
-				"pagePath": "pages/modes/component/index",
-				"text": "组件"
+				"pagePath": "pages/more/index",
+				"text": "逛一逛"
 			},
 			{
-				"pagePath": "pages/modes/method/index",
-				"text": "方法"
-			},
-			{
-				"pagePath": "pages/modes/mode/index",
-				"text": "模板"
+				"pagePath": "pages/user/index",
+				"text": "我的"
 			}
 		]
 	}

@@ -5,7 +5,7 @@ function padLeftZero(str) {
 	return ('00' + str).substr(str.length)
 }
 let formatKit = {
-	// 日期格式化
+	// 日期格式化 固定形式
 	dateTimeFormat(datetime) {
 		let date = new Date(datetime);
 		let YY = (date.getFullYear() + '').substring(2,4) + '-';
@@ -15,6 +15,7 @@ let formatKit = {
 		let mm = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
 		return YY + MM + DD +" " + hh + mm
 	},
+	// 日期格式化 自定义形式
 	customDateTimeFormat(date , fmt){
 		if (/(y+)/.test(fmt)) {
 			fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
@@ -51,6 +52,49 @@ let formatKit = {
 			return scoreValue + '.0'; // 不存在补.0
 		}
 		return scoreValue
+	},
+	/* 表单序列化：对象形式返回地址中携带的参数 */
+	getQueryObject(url) {
+		url = url == null ? window.location.href : url
+		const search = url.substring(url.lastIndexOf('?') + 1)
+		const obj = {}
+		const reg = /([^?&=]+)=([^?&=]*)/g
+		search.replace(reg, (rs, $1, $2) => {
+			const name = decodeURIComponent($1)
+			let val = decodeURIComponent($2)
+			val = String(val)
+			obj[name] = val
+			return rs
+		})
+		return obj
+	},
+	// 自定义脱敏 str：文本	frontLen：前面显示的文本位数	endLen：后面显示的文本位数
+	plusXing(str, frontLen, endLen) {
+		str = str.replace(/\s/g, "");
+		if (str.length == 2) {
+			return str.substring(0, frontLen) + '*'
+		}
+		if (str.length <= (frontLen + endLen)) {
+			return str.substring(0, frontLen) + '*'
+		}
+		var len = str.length - frontLen - endLen;
+		var xing = '';
+		for (var i = 0; i < len; i++) {
+			xing += '*';
+		}
+		return str.substring(0, frontLen) + xing + str.substring(str.length - endLen);
+	},
+	//金额转换 分->元 保留2位小数 并每隔3位用逗号分开 1,234.56
+	fenToYuan(val) {
+		var str = (val/100).toFixed(2) + '';
+		var intSum = str.substring(0,str.indexOf(".")).replace( /\B(?=(?:\d{3})+$)/g, ',' );//取到整数部分
+		var dot = str.substring(str.length,str.indexOf("."))//取到小数部分搜索
+		var ret = intSum + dot;
+		return ret;
+	},
+	// 生成一个随机Id
+	getID(){
+	   return Number(Math.random().toString().substr(2) + Date.now()).toString(36)
 	}
 }
 export default formatKit

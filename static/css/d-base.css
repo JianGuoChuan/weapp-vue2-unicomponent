@@ -42,6 +42,7 @@ html,body{ font-size: 16px;color: #333; }
 .border-b-s{ border-bottom: 2rpx solid #999; }.border-b-m{ border-bottom: 4rpx solid #999; }.border-b-xs{ border-bottom: 6rpx solid #999; }
 .border-l-s{ border-left: 2rpx solid #999; }.border-l-m{ border-left: 4rpx solid #999; }.border-l-xs{ border-left: 6rpx solid #999; }
 .border-r-s{ border-right: 2rpx solid #999; }.border-r-m{ border-right: 4rpx solid #999; }.border-r-xs{ border-right: 6rpx solid #999; }
+.border-t-whitegrey{ border-top: 2rpx solid #dcdcdc; }
 .border-b-whitegrey{ border-bottom: 2rpx solid #dcdcdc; }
 .border-color-primary{ border-color: #409eff; }.border-color-warning{ border-color: #e6a23c; }
 .border-color-danger{ border-color: #f56c6c; }.border-color-info{ border-color: #999; }
