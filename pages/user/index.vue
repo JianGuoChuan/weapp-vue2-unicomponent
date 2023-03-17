@@ -1,15 +1,19 @@
 <template>
 	<view>
-		<DFab :left="0" :right="80" :bottom="100" bgColor="#5677fc" :btnList="btnList" @click="onClick"></DFab>
+		<d-inputBar v-model="value" :clearIcon='true'
+			leftIcon='icon-ecrt icon-ecrt-search'></d-inputBar>
+		<!-- demo示例入口，正式使用可保留方便查阅，发布移除即可 -->
+		<DFabBtn :left="0" :right="80" :bottom="100" bgColor="#5677fc" :btnList="btnList" @click="onClick"></DFabBtn>
 	</view>
 </template>
 
 <script>
-	import DFab from "@/components/extension/d-fab/d-fab.vue"
+	import DFabBtn from "@/components/extension/d-fab/d-fab.vue"
 	export default {
-		components: { DFab },
+		components: { DFabBtn },
 		data() {
 			return {
+				value: '',
 				btnList: [
 					{
 						bgColor: "#16C2C2",

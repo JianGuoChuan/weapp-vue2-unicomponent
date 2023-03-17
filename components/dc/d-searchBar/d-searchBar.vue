@@ -24,8 +24,8 @@
 			</view>
 		</view>
 		<!-- 搜索输入框 -->
-		<InputBar v-model="searchValue" :clearIcon='true' :placeholder="searchTypeName + '搜索'"
-			leftIcon='icon-ecrt icon-ecrt-search' @confirm="search"></InputBar>
+		<d-inputBar v-model="searchValue" :clearIcon='true' :placeholder="searchTypeName + '搜索'"
+			leftIcon='icon-ecrt icon-ecrt-search' @confirm="search"></d-inputBar>
 	</view>
 </template>
 
@@ -40,9 +40,7 @@
 	* rightIcon：右侧图标
 	* @confirm 完成方法回调
 	*/
-	import InputBar from "@/components/d/d-inputBar/d-inputBar.vue"
 	export default {
-		components: { InputBar },
 		props:{
 			options : {
 				type : Array,

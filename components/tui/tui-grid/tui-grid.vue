@@ -5,10 +5,14 @@
 </template>
 
 <script>
+	/**
+	 * 组件名称：grid，宫格组件容器
+	 * prop:
+	 * unlined: 是否去掉上线条
+	 * */
 	export default {
-		name:"tuiGrid",
+		name: "tuiGrid",
 		props: {
-			//是否去掉上线条
 			unlined: {
 				type: Boolean,
 				default: false
@@ -23,7 +27,6 @@
 		position: relative;
 		overflow: hidden;
 	}
-
 	.tui-grids::after {
 		content: " ";
 		position: absolute;
@@ -37,7 +40,6 @@
 		-webkit-transform: scaleY(0.5);
 		transform: scaleY(0.5);
 	}
-
 	.tui-border-top::after {
 		border-top: 0 !important;
 	}

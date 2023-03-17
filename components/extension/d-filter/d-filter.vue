@@ -373,13 +373,13 @@
 				background-color: #eee;
 				color: #999;
 				border: 1px solid #dcdcdc;
-				border-top-left-radius: 15px;
-				border-bottom-left-radius: 15px;
+				border-top-left-radius: 40rpx;
+				border-bottom-left-radius: 40rpx;
 			}
 			.filterBtn{
 				background-color: #2483eb;
-				border-top-right-radius: 15px;
-				border-bottom-right-radius: 15px;
+				border-top-right-radius: 40rpx;
+				border-bottom-right-radius: 40rpx;
 			}
 		}
 	}

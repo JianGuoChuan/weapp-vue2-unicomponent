@@ -53,6 +53,24 @@
 			}
 		},
 		{
+			"path": "pages/modes/components/component/button/index",
+			"style": {
+				"navigationBarTitleText": "按钮组"
+			}
+		},
+		{
+			"path": "pages/modes/components/component/input/index",
+			"style": {
+				"navigationBarTitleText": "输入框"
+			}
+		},
+		{
+			"path": "pages/modes/components/component/toast/index",
+			"style": {
+				"navigationBarTitleText": "消息提示"
+			}
+		},
+		{
 			"path": "pages/modes/components/component/grid/index",
 			"style": {
 				"navigationBarTitleText": "宫格布局"

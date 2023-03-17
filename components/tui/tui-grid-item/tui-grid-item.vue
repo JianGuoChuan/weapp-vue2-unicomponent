@@ -1,6 +1,10 @@
 <template>
-	<view class="tui-grid" :class="[bottomLine?'':'tui-grid-bottom',border?'':'tui-grid__unlined','tui-grid-'+(cell<2?3:cell)]" :hover-class="hover?'tui-item-hover':''"
-	 :hover-stay-time="150" :style="{backgroundColor:backgroundColor}" @tap="handleClick">
+	<view class="tui-grid"
+		:class="[ bottomLine ? '' : 'tui-grid-bottom' , border ? '' : 'tui-grid__unlined' , 'tui-grid-' + (cell < 2 ? 3 :cell) ]"
+		:hover-class=" hover ? 'tui-item-hover': '' " 
+		:hover-stay-time="150" 
+		:style="{ backgroundColor: backgroundColor }"
+		@tap="handleClick">
 		<view class='tui-grid-bg'>
 			<slot></slot>
 		</view>
@@ -8,30 +12,36 @@
 </template>
 
 <script>
+	/**
+	 * 组件名称：grid，宫格组件
+	 * prop:
+	 * cell: 列数量
+	 * backgroundColor：背景颜色
+	 * hover: 是否有点击效果
+	 * bottomLine: 是否需要底部线条
+	 * border: 是否需要纵向边框线条
+	 * */
 	export default {
 		name: "tuiGridItem",
 		emits: ['click'],
 		props: {
 			cell: {
-				type: [Number,String],
+				type: [Number, String],
 				default: 3
 			},
 			backgroundColor: {
 				type: String,
 				default: "#fff"
 			},
-			//是否有点击效果
 			hover: {
 				type: Boolean,
 				default: true
 			},
-			//是否需要底部线条
 			bottomLine: {
 				type: Boolean,
 				default: true
 			},
-			//是否需要纵向边框线条
-			border:{
+			border: {
 				type: Boolean,
 				default: true
 			},
@@ -58,10 +68,12 @@
 		background: #fff;
 		float: left;
 	}
+
 	/* #ifdef MP-BAIDU */
-	.tui-grid:active{
+	.tui-grid:active {
 		background-color: #f7f7f9;
 	}
+
 	/* #endif */
 
 	.tui-grid-2 {
@@ -115,8 +127,8 @@
 		-webkit-transform: scaleX(0.5);
 		transform: scaleX(0.5);
 	}
-	
-	.tui-grid__unlined::before{
+
+	.tui-grid__unlined::before {
 		width: 0 !important;
 		border-right: 0 !important;
 	}
@@ -148,6 +160,6 @@
 	}
 
 	.tui-item-hover {
-		background-color: #f7f7f9 !important;
+		background-color: #f7f7f9!important;
 	}
 </style>

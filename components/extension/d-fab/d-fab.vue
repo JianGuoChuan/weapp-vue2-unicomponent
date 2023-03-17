@@ -20,7 +20,7 @@
 			<view class="d-fab-item" :class="{ 'd-active': isOpen }"
 				:style="{ width: width+'rpx', height:height+'rpx', borderRadius:radius, background:bgColor, color:color }"
 				@tap.stop="handleClick(-1)">
-				<text class="icon-ecrt icon-ecrt-shizijiahao3" v-if="!custom"></text>
+				<text class="icon-ecrt icon-ecrt-CrossArrow" v-if="!custom"></text>
 				<slot></slot>
 			</view>
 		</view>

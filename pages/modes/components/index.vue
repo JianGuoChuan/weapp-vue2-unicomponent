@@ -1,26 +1,31 @@
 <template>
-	<view class="bg-whitegrey">
-		<!-- <view class="text-center padding-tb-md font-bold text-word-spacing-1">
-			DUniMode 微信小程序组件库
+	<view class="bg-whitegrey padding-md">
+		<view>
+			<view class="text-center padding-tb-md font-bold text-word-spacing-1">
+				DUniMode 微信小程序组件库
+			</view>
+			<view class="font-sm text-indent">
+				小程序环境下考虑到性能问题，尝试了只保留高频使用的组件进行全局挂载，比如button、inputBar等，了解已全局挂载的组件项可前往components/dc下查阅，其他的扩展组件则需要自行按需引入使用。
+			</view>
 		</view>
-		<DListView title="菜单列表">
-			<DListCell @click="to(item)" :arrow="true" v-for="(item, index) in list" :key='index'>
+		<ListView title="组件列表">
+			<ListCell @click="to(item)" :arrow="true" v-for="(item, index) in list" :key='index'>
 				<view class="d-item-box">
-					<d-icon name="wealth-fill" :size="24" color="#ff7900"></d-icon>
+					<text :class="[ 'icon-ecrt', item.icon ]"></text>
 					<text class="d-list-cell_name">{{ item.label }}</text>
 					<view class="d-right">{{ item.desc }}</view>
 				</view>
-			</DListCell>
-		</DListView> -->
+			</ListCell>
+		</ListView>
 	</view>
 </template>
 
 <script>
-	// import DListView from "@/components/d/d-list-view/d-list-view.vue"
-	// import DListCell from "@/components/d/d-list-cell/d-list-cell.vue"
+	import ListView from "@/components/tui/tui-list-view/tui-list-view.vue"
+	import ListCell from "@/components/tui/tui-list-cell/tui-list-cell.vue"
 	export default {
 		components: {
-			// DListView, DListCell
+			ListView, ListCell
 		},
 		data() {
 			return {
@@ -28,14 +33,37 @@
 					{
 						label: '字体图标',
 						desc: '内置字体图标库',
+						icon: 'icon-ecrt-collectioned',
 						path: '/pages/modes/components/component/fontIcon/index'
 					},{
-						label: '筛选弹框',
+						label: '按钮组[全局组件]',
+						desc: '定制化按钮',
+						icon: 'icon-ecrt-enable',
+						path: '/pages/modes/components/component/button/index'
+					},{
+						label: '输入框[全局组件]',
+						desc: '多场景输入框',
+						icon: 'icon-ecrt-edit',
+						path: '/pages/modes/components/component/input/index'
+					},{
+						label: '消息提醒[全局组件]',
+						desc: '多场景消息提示',
+						icon: 'icon-ecrt-notice',
+						path: '/pages/modes/components/component/toast/index'
+					},{
+						label: '卡片',
+						desc: '多场景卡片',
+						icon: 'icon-ecrt-qckPay',
+						path: ''
+					},{
+						label: '筛选侧边栏',
 						desc: '多类型筛选弹框',
+						icon: 'icon-ecrt-filter_fill',
 						path: '/pages/modes/components/component/filter/index'
 					},{
 						label: '宫格列表',
 						desc: '宫格布局',
+						icon: 'icon-ecrt-check',
 						path: '/pages/modes/components/component/grid/index'
 					}
 				]
@@ -43,6 +71,12 @@
 		},
 		methods: {
 			to(item) {
+				if(!item.path){
+					uni.showToast({
+						title: '暂未更新',
+						icon: 'none'
+					})
+				}
 				this.$routes.to(item.path)
 			}
 		},
