@@ -14,8 +14,6 @@
 		data() {
 			return {
 				show: false,
-				env: '',
-				env2: ''
 			}
 		},
 		watch: {
@@ -35,10 +33,6 @@
 						console.log(uni.getStorageSync('localData'));
 					}
 				})
-				// this.$d.vuex('vuex_env_token', 123)
-				// this.$d.vuex('vuex_token', { trial: 123 })
-				// console.log( __wxConfig.envVersion );
-				// console.log(this.vuex_env_token);
 			},
 			async getTestData(){
 				console.log('---notice---');

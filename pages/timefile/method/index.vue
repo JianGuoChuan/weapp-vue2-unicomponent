@@ -6,8 +6,8 @@
 			<StepNumber v-model="number"></StepNumber>
 		</view>
 		
-		<!-- <view class="padding-md bradius-md shadow-m-bottom text-primary text-word-spacing-1"> -->
-			<!-- <view>
+		<view class="padding-md bradius-md shadow-m-bottom text-primary text-word-spacing-1">
+			<view>
 				<view class="margin-b-com">输入框</view>
 				<InputBar v-model="value" :clearIcon='true'
 					leftIcon='icon-ecrt icon-ecrt-search'></InputBar>
@@ -48,12 +48,12 @@
 			<view>
 				<view class="margin-tb-com">验证码倒计时</view>
 				<VerificationCode time='10' radius='50' @start='start' ref='veriticationCode'></VerificationCode>
-			</view> -->
-			<!-- <view>
+			</view>
+			<view>
 				<view class="margin-tb-com">抽屉筛选</view>
 				<button class="bg-primary bradius-round text-white font-com margin-t-md" @tap='filterShow = true'>开</button>
-			</view> -->
-		<!-- </view> -->
+			</view>
+		</view>
 		
 	</view>
 </template>
@@ -125,7 +125,7 @@
 		},
 		methods: {
 			to() {
-				this.$routes.to('/pages/modes/test/test', { id: 123 })
+				this.$routes.to('/pages/modes/test/test', { id: '哈哈哈哈' })
 			},
 			rateSelect(item){
 				console.log(item);
