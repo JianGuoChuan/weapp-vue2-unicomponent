@@ -1,11 +1,15 @@
 <template>
 	<view class="inputBar relative">
 		<input v-model="inputValue" :placeholder="placeholder"
+			:type='type'
+			:focus='focus'
+			:password='password'
+			:maxlength='maxlength'
 			:style="{ 
-				paddingLeft: leftIcon ? '70rpx' : '20rpx', 
-				paddingRight: rightIcon ? '70rpx' : '20rpx',
-				paddingTop: padding,
-				paddingBottom: padding,
+				paddingLeft: leftIcon ? '65rpx' : '20rpx', 
+				paddingRight: rightIcon && clearIcon ? '110rpx' : rightIcon || clearIcon ? '70rpx' : '20rpx',
+				paddingTop: padding + 'rpx',
+				paddingBottom: padding + 'rpx',
 				backgroundColor: bgColor,
 				color: textColor,
 				border: border,
@@ -13,10 +17,22 @@
 			}"
 			@input='updateValue' @confirm='confirm'/>
 		<text class="icon-ecrt icon-ecrt-roundclose absolute font-bold text-grey" 
-			:style="{ top: '20rpx',right: '18rpx',color: iconColor }"
-			@tap.stop='clear' v-show="clearIcon && inputValue"></text>
-		<text :class="[ leftIcon, 'absolute font-bold' ]" :style="{ top: '20rpx',left: '18rpx',color: iconColor }"></text>
-		<text :class="[ rightIcon, 'absolute font-bold' ]" :style="{ top: '20rpx',right: '18rpx',color: iconColor }"></text>
+			:style="{ 
+				top: padding == 12 ? '20rpx' : padding + 8 + 'rpx',
+				right: rightIcon ? '70rpx' : '20rpx',
+				color: iconColor 
+			}"
+			@tap='clear' v-show="clearIcon && inputValue"></text>
+		<text :class="[ leftIcon, 'absolute font-bold' ]" :style="{ 
+				top: padding == 12 ? '20rpx' : padding + 8 + 'rpx',
+				left: '20rpx',
+				color: iconColor 
+			}"></text>
+		<text :class="[ rightIcon, 'absolute font-bold' ]" :style="{ 
+				top: '20rpx',
+				right: '20rpx',
+				color: iconColor 
+			}"></text>
 	</view>
 </template>
 
@@ -26,10 +42,14 @@
 	* props：
 	* value：绑定值
 	* placeholder：占位符
+	* type: 输入类型，同uniType
+	* focus: 自定获取焦点
+	* maxlength： 最大文本长度
+	* password：是否密码类型
 	* clearIcon：是否显示清除图标
 	* leftIcon：左侧图标
 	* rightIcon：右侧图标
-	* padding: 上下内边距
+	* padding: 上下内边距,Number类型
 	* textColor：输入框文本颜色
 	* bgColor：输入框背景颜色
 	* border：输入框边框
@@ -46,9 +66,25 @@
 				type: String,
 				default: '请输入内容'
 			},
-			padding: {
+			type: {
 				type: String,
-				default: '12rpx'
+				default: 'text'
+			},
+			focus: {
+				type: Boolean,
+				default: false
+			},
+			maxlength: {
+				type: Number,
+				default: 140
+			},
+			password: {
+				type: Boolean,
+				default: false
+			},
+			padding: {
+				type: Number,
+				default: 12
 			},
 			textColor: {
 				type: String,
