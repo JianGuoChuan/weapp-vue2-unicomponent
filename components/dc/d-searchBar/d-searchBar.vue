@@ -1,13 +1,17 @@
 <template>
 	<view class="relative" id='menuBoxHeight'
-		:style="{'padding-left' : mode == 'typeSearch' ? `${typeMenuWidth}px` : '10px'}">
+		:style="{
+			'padding-left' : mode == 'typeSearch' ? `${typeMenuWidth + 10}px` : '0px',
+			'padding-right' : filterIcon ? '40rpx' : '0rpx'
+		}">
 		<!-- 类型标题 -->
-		<view @click='openTypeList' id="typeMenuWidth" class="padding-s absolute font-md" 
-			style="top: 12rpx;left : 5rpx;min-width: 85px;" 
+		<view @click='openTypeList' id="typeMenuWidth" class="padding-s absolute font-com text-hidden" 
+			style="top: 10rpx;left : 5rpx;width: 120rpx;" 
 			v-show="mode == 'typeSearch'">
-			<text class="margin-right-xs font-md" :class="typeShow ? 'text-skyblue' : 'text-darkgrey'">{{searchTypeName}}</text>
-			<text :class="[ 'icon-ecrt icon-ecrt-jdown', typeShow ? 'rotate-180' : 'rotate-0' ] "></text>
+			<text class="margin-right-xs font-md" :class="typeShow ? 'text-bdblue' : 'text-deepgrey'">{{searchTypeName}}</text>
+			<text :class="[ 'icon-ecrt icon-ecrt-jdown transition200', typeShow ? 'rotate180' : 'rotate0' ] "></text>
 		</view>
+		
 		<!-- 类型列表 -->
 		<view :style="{
 				'zIndex' : '99', 
@@ -19,13 +23,58 @@
 				v-for="(item,index) in options" :key='item.value' @click='select(item)'>
 				<view :class="item.checked ? 'text-skyblue' : ''">{{item.desc}}</view>
 				<view>
-					<text v-if="item.checked" name='checkbox-mark' class="text-skyblue">已选择</text>
+					<text class="icon-ecrt icon-ecrt-selected01 text-bdblue font-com" v-if="item.checked"></text>
 				</view>
 			</view>
 		</view>
+		
 		<!-- 搜索输入框 -->
-		<d-inputBar v-model="searchValue" :clearIcon='true' :placeholder="searchTypeName + '搜索'"
-			leftIcon='icon-ecrt icon-ecrt-search' @confirm="search"></d-inputBar>
+		<input v-model="searchValue" 
+			:placeholder="mode=='typeSearch' ? `${searchTypeName}搜索` :placeholder"
+			:placeholder-style='placeholderStyle'
+			:style="{ 
+				paddingLeft: leftIcon ? '65rpx' : paddingLeft + 'rpx', 
+				paddingRight: rightIcon && clearIcon ? '110rpx' 
+				: searchBtn && clearIcon ? '180rpx' 
+				: searchBtn && !clearIcon ? '120rpx' 
+				: rightIcon || clearIcon ? '70rpx' 
+				: paddingRight,
+				paddingTop: padding + 'rpx',
+				paddingBottom: padding + 'rpx',
+				backgroundColor: bgColor,
+				color: textColor,
+				border: border,
+				borderRadius: radius,
+				textAlign: align
+			}"
+			@confirm='search' />
+		<!-- 清除图标 -->
+		<text class="icon-ecrt icon-ecrt-roundclose absolute font-bold text-grey"
+			:style="{ 
+				top: padding == 12 ? '20rpx' : padding + 8 + 'rpx',
+				right: rightIcon ? '70rpx' : !rightIcon && searchBtn ? '120rpx' : '20rpx',
+				color: iconColor 
+			}"
+			@tap='clear' v-show="clearIcon && searchValue"></text>
+		<!-- 左侧图标 -->
+		<text :class="[ 'icon-ecrt icon-ecrt-search absolute font-bold' ]" v-if='leftIcon'
+			:style="{ 
+				top: padding == 12 ? '20rpx' : padding + 8 + 'rpx',
+				left: mode == 'typeSearch' ? typeMenuWidth + 95 + 'rpx'  : '20rpx',
+				color: iconColor 
+			}"></text>
+		<!-- 右侧图标 -->
+		<text :class="[ 'icon-ecrt icon-ecrt-search absolute font-bold' ]" v-if='rightIcon'
+			:style="{
+				top: padding == 12 ? '20rpx' : padding + 8 + 'rpx',
+				right: '20rpx',
+				color: iconColor 
+			}"></text>
+		
+		<d-button height='52rpx' size='24' width='100rpx' shape='circle' v-if="searchBtn" 
+			:style="{ fontSize: '24rpx',position: 'absolute', right: '10rpx', top: padding - 2 + 'rpx', }"
+			@click.stop='search'>搜索</d-button>
+		
 	</view>
 </template>
 
@@ -33,23 +82,105 @@
 	/*
 	* 组件名称：搜索框
 	* props：
-	* options：配置项
+	* options：配置项，见下方示例
 	* mode：模式，支持search（默认）、typeSearch
-	* clearIcon：是否显示清除图标
-	* leftIcon：左侧图标
-	* rightIcon：右侧图标
-	* @confirm 完成方法回调
+	* align: 对齐方式
+	* placeholder：占位文本
+	* placeholderStyle：占位文本样式
+	* clearIcon：清除图标显隐
+	* leftIcon：左侧图标显隐
+	* rightIcon：右侧图标显隐
+	* searchBtn：搜索按钮显隐
+	* paddingLeft：左侧内边距
+	* padding：上下内边距
+	* bgColor：背景颜色
+	* textColor：文本颜色
+	* border：边框样式
+	* radius：圆角值
+	* iconColor：图标颜色
+	* @search 搜索方法回调
+	* @changeType 切换类型回调
 	*/
+	// options示例：
+	// options: [
+	// 	{
+	// 		label: 'ICCID',
+	// 		desc : '按卡ICCID搜索',
+	// 		value: 'iccid',
+	// 		checked : true
+	// 	},{
+	// 		label: '按渠道',
+	// 		desc : '按归属渠道搜索',
+	// 		value: 'formChannel',
+	// 		checked : false
+	// 	},
+	// ],
 	export default {
 		props:{
 			options : {
 				type : Array,
-				required: true
+				required: true,
 			},
 			mode: {
 				type : String,
 				default: 'search'
 			},
+			align: {
+				type : String,
+				default: 'left'
+			},
+			placeholder: {
+				type : String,
+				default: 'placeholder'
+			},
+			placeholderStyle: {
+				type: String,
+				default: ''
+			},
+			clearIcon: {
+				type: Boolean,
+				default: false
+			},
+			leftIcon: {
+				type: Boolean,
+				default: true
+			},
+			rightIcon: {
+				type: Boolean,
+				default: false
+			},
+			searchBtn: {
+				type: Boolean,
+				default: false
+			},
+			paddingLeft: {
+				type: Number,
+				default: 20
+			},
+			padding: {
+				type: Number,
+				default: 12
+			},
+			bgColor: {
+				type : String,
+				default: '#fff'
+			},
+			textColor: {
+				type : String,
+				default: '#666'
+			},
+			border: {
+				type : String,
+				default: '1px solid #eee',
+			},
+			radius: {
+				type : String,
+				default: '5rpx'
+			},
+			iconColor: {
+				type : String,
+				default: '#666'
+			}
 		},
 		data(){
 			return {
@@ -58,8 +189,8 @@
 				menuBoxHeight : 0,
 				menuHeight : 0,
 				typeMenuWidth : 0,
-				searchTypeName : this.options[0].label,
-				searchType : this.options[0].value,
+				searchTypeName: '',
+				searchType: '',
 				customStyleHeight : Object.freeze({
 					'height' : '30px',
 					'width' : '100px'
@@ -80,7 +211,6 @@
 						this.menuHeight = data.height;
 					}).exec();
 				});
-				
 			},
 			// 类型选择入口
 			select(item){
@@ -98,37 +228,36 @@
 					typeValue : this.searchType,
 				});
 			},
+			clear(){
+				this.searchValue = '';
+				this.$emit('search', this.searchValue);
+			},
 			search(){
-				this.$emit('search',this.searchKey);
+				console.log(111);
+				this.$emit('search',this.searchValue);
 			},
 			cancel(){
-				this.searchKey = '';
-				this.$emit('cancel',this.searchKey);
-			},
-			checkedItem(cItem,fitem){
-				if((fitem.selectOptionKey === cItem.key) && !fitem.onlyOne){
-					cItem.checked = !cItem.checked;
-					fitem.selectOptionName = '';
-					fitem.selectOptionKey = '';
-					return
-				}
-				fitem.selectOptionKey = cItem.key;
-				fitem.selectOptionName = cItem.name;
-				fitem.options.map(item=>{
-					item.checked = false;
-				});
-				cItem.checked = true;
-				this.$emit('update:filterOptions',this.filterOptions);
+				this.searchValue = '';
+				this.$emit('cancel',this.searchValue);
 			},
 		},
 		mounted(){
+			if(this.mode != 'typeSearch' || !this.options.length) return
+			// 设置默认选择项
+			this.options.map(item => {
+				if(item.checked){
+					this.searchTypeName= item.label;
+					this.searchType= item.value;
+					return
+				}
+			});
+			// 计算搜索栏高度
 			this.$nextTick(() => {
 				const query = uni.createSelectorQuery().in(this);
 				query.select('#typeMenuWidth').boundingClientRect(data => {
 					this.typeMenuWidth = data.width - 10;
 				}).exec();
 				query.select('#menuBoxHeight').boundingClientRect(data => {
-					console.log(data.height);
 					this.menuBoxHeight = data.height;
 				}).exec();
 			});

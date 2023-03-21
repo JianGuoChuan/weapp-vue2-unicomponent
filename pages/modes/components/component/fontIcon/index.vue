@@ -1,7 +1,7 @@
 <template>
 	<view class="padding-md bg-whitegrey">
 		<view class="padding-md bg-white">
-			<d-inputBar v-model="searchKey" placeholder='请输入key或者描述查询'></d-inputBar>
+			<d-input v-model="searchKey" placeholder='请输入key或者描述查询'></d-input>
 		</view>
 		<GridView>
 			<block v-for="(item,index) in iconListFilter" :key="index">
@@ -84,6 +84,15 @@
 					},{
 						label: '手机【填充】',
 						key: 'icon-ecrt-m_phone',
+					},{
+						label: '消息|通知【填充】',
+						key: 'icon-ecrt-message01',
+					},{
+						label: '卡片【填充】',
+						key: 'icon-ecrt-card',
+					},{
+						label: '宫格【填充】',
+						key: 'icon-ecrt-grid',
 					},{
 						label: '手机',
 						key: 'icon-ecrt-disabled',
@@ -204,8 +213,13 @@
 					},{
 						label: '二维码',
 						key: 'icon-ecrt-scanCode',
-					}
-					
+					},{
+						label: '选中1',
+						key: 'icon-ecrt-selected01',
+					},{
+						label: '选中2',
+						key: 'icon-ecrt-selected02',
+					},
 				]
 			}
 		},

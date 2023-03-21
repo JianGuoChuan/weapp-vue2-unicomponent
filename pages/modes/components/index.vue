@@ -46,14 +46,24 @@
 						icon: 'icon-ecrt-edit',
 						path: '/pages/modes/components/component/input/index'
 					},{
-						label: '消息提醒[全局组件]',
+						label: '搜索栏[全局组件]',
+						desc: '多功能搜索栏套组',
+						icon: 'icon-ecrt-search',
+						path: '/pages/modes/components/component/search/index'
+					},{
+						label: '消息提示[全局组件]',
 						desc: '多场景消息提示',
-						icon: 'icon-ecrt-notice',
+						icon: 'icon-ecrt-message01',
 						path: '/pages/modes/components/component/toast/index'
+					},{
+						label: '消息提醒[全局组件]',
+						desc: '多场景消息提醒',
+						icon: 'icon-ecrt-notice',
+						path: '/pages/modes/components/component/tips/index'
 					},{
 						label: '卡片',
 						desc: '多场景卡片',
-						icon: 'icon-ecrt-qckPay',
+						icon: 'icon-ecrt-card',
 						path: ''
 					},{
 						label: '筛选侧边栏',
@@ -63,7 +73,7 @@
 					},{
 						label: '宫格列表',
 						desc: '宫格布局',
-						icon: 'icon-ecrt-check',
+						icon: 'icon-ecrt-grid',
 						path: '/pages/modes/components/component/grid/index'
 					}
 				]

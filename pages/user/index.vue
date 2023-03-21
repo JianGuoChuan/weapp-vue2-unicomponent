@@ -1,5 +1,7 @@
 <template>
 	<view>
+		
+		
 		<!-- demo示例入口，开发使用可保留方便查阅，发布移除即可 -->
 		<DFabBtn :left="0" :right="80" :bottom="100" bgColor="#5677fc" :btnList="btnList" @click="onClick"></DFabBtn>
 	</view>

@@ -5,9 +5,10 @@
 			:focus='focus'
 			:password='password'
 			:maxlength='maxlength'
+			:placeholder-style='placeholderStyle'
 			:style="{ 
-				paddingLeft: leftIcon ? '65rpx' : '20rpx', 
-				paddingRight: rightIcon && clearIcon ? '110rpx' : rightIcon || clearIcon ? '70rpx' : '20rpx',
+				paddingLeft: leftIcon ? '65rpx' : paddingLeft, 
+				paddingRight: rightIcon && clearIcon ? '110rpx' : rightIcon || clearIcon ? '70rpx' : paddingRight,
 				paddingTop: padding + 'rpx',
 				paddingBottom: padding + 'rpx',
 				backgroundColor: bgColor,
@@ -16,6 +17,7 @@
 				borderRadius: bradius
 			}"
 			@input='updateValue' @confirm='confirm'/>
+		<!-- 清空图标 -->
 		<text class="icon-ecrt icon-ecrt-roundclose absolute font-bold text-grey" 
 			:style="{ 
 				top: padding == 12 ? '20rpx' : padding + 8 + 'rpx',
@@ -23,13 +25,15 @@
 				color: iconColor 
 			}"
 			@tap='clear' v-show="clearIcon && inputValue"></text>
+		<!-- 左侧图标 -->
 		<text :class="[ leftIcon, 'absolute font-bold' ]" :style="{ 
 				top: padding == 12 ? '20rpx' : padding + 8 + 'rpx',
 				left: '20rpx',
 				color: iconColor 
 			}"></text>
+		<!-- 右侧图标 -->
 		<text :class="[ rightIcon, 'absolute font-bold' ]" :style="{ 
-				top: '20rpx',
+				top: padding == 12 ? '18rpx' : padding + 8 + 'rpx',
 				right: '20rpx',
 				color: iconColor 
 			}"></text>
@@ -49,6 +53,7 @@
 	* clearIcon：是否显示清除图标
 	* leftIcon：左侧图标
 	* rightIcon：右侧图标
+	* placeholderStyle：占位文本样式
 	* padding: 上下内边距,Number类型
 	* textColor：输入框文本颜色
 	* bgColor：输入框背景颜色
@@ -74,6 +79,14 @@
 				type: Boolean,
 				default: false
 			},
+			paddingLeft: {
+				type: String,
+				default: '20rpx'
+			},
+			paddingRight: {
+				type: String,
+				default: '20rpx'
+			},
 			maxlength: {
 				type: Number,
 				default: 140
@@ -81,6 +94,10 @@
 			password: {
 				type: Boolean,
 				default: false
+			},
+			placeholderStyle: {
+				type: String,
+				default: ''
 			},
 			padding: {
 				type: Number,

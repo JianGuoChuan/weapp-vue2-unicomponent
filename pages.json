@@ -64,6 +64,12 @@
 			}
 		},
 		{
+			"path": "pages/modes/components/component/search/index",
+			"style": {
+				"navigationBarTitleText": "搜索栏套组"
+			}
+		},
+		{
 			"path": "pages/modes/components/component/toast/index",
 			"style": {
 				"navigationBarTitleText": "消息提示"

@@ -19,7 +19,7 @@ html,body{ font-size: 16px;color: #333; }
 .text-word-spacing-1{letter-spacing: 0.1em;}.text-word-spacing-2{letter-spacing: 0.2em;}  /* 字符间距 */
 .break-word{word-wrap: break-word;}.break-all{word-break:break-all;}  /* 文本是否允许换行 */
 .text-center{text-align: center;}.text-left{text-align: left;}.text-right{text-align: right;}.text-justity{text-align: justify;}/*水平对齐方式*/
- .text-v-middle{ vertical-align: middle; }.text-v-bottom{vertical-align: bottom;}.text-v-baseline{vertical-align: baseline;} /*垂直对齐方式*/
+.text-v-middle{ vertical-align: middle; }.text-v-bottom{vertical-align: bottom;}.text-v-baseline{vertical-align: baseline;} /*垂直对齐方式*/
 .font-family-SimHei{ font-family: SimHei;}.font-family-KaiTi{font-family: KaiTi;}/*字体*/
 /* 文本尺寸 */
 .font-s{ font-size: 20rpx; }.font-m{ font-size: 22rpx; }.font-xs{ font-size: 24rpx; }.font-sm{ font-size: 26rpx; }
