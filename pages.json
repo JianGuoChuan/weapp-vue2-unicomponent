@@ -76,6 +76,12 @@
 			}
 		},
 		{
+			"path": "pages/modes/components/component/tips/index",
+			"style": {
+				"navigationBarTitleText": "消息提醒"
+			}
+		},
+		{
 			"path": "pages/modes/components/component/grid/index",
 			"style": {
 				"navigationBarTitleText": "宫格布局"

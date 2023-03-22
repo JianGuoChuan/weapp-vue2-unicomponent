@@ -132,10 +132,9 @@
 	// },
 	// 备注：uni picker机制原因，目前日期类型仅支持使用一次，不可重复添加配置，如需多个日期区间的筛选，请自行在组件内添加备用区间prop属性
 	import UniDrawer from "@/components/uni/uni-drawer/components/uni-drawer/uni-drawer.vue"
-	import UniTransition from "@/components/uni/uni-transition/components/uni-transition/uni-transition.vue"
 	export default {
 		components: {
-			UniDrawer, UniTransition
+			UniDrawer
 		},
 		props: {
 			value: {

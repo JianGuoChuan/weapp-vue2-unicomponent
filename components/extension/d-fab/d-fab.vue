@@ -142,7 +142,8 @@
 				}
 				if (!this.isOpen) {
 					this.timer = setTimeout(() => {
-						this.isHidden = true
+						this.isHidden = true;
+						clearTimeout(this.timer);
 					}, 200)
 				}
 			},
@@ -150,6 +151,9 @@
 				if (!this.maskClosable) return;
 				this.isOpen = false
 			}
+		},
+		destroyed() {
+			clearTimeout(this.timer);
 		}
 	}
 </script>

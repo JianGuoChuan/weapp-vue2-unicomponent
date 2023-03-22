@@ -10,10 +10,17 @@
 </template>
 
 <script>
+	/*
+	* 组件名称：消息提醒
+	* props：
+	* position：弹出位置，top bottom center
+	* backgroundColor：背景颜色
+	* color: 文本颜色
+	* size: 字体大小
+	*/
 export default {
 	name: 'dTips',
 	props: {
-		//top bottom center
 		position: {
 			type: String,
 			default: 'top'
@@ -43,7 +50,6 @@ export default {
 			const {duration = 2000 } = options;
 			clearTimeout(this.timer);
 			this.show = true;
-			// this.duration = duration < 2000 ? 2000 : duration;
 			this.msg = options.msg;
 			this.timer = setTimeout(() => {
 				this.show = false;
